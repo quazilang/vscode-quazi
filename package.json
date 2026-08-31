@@ -1,0 +1,36 @@
+{
+  "name": "quazi",
+  "displayName": "Quazi",
+  "description": "Quazi language support through qz lsp",
+  "version": "0.1.0",
+  "publisher": "quazilang",
+  "license": "0BSD",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Programming Languages"],
+  "main": "./src/extension.js",
+  "activationEvents": ["onLanguage:quazi"],
+  "contributes": {
+    "languages": [{
+      "id": "quazi",
+      "aliases": ["Quazi", "quazi"],
+      "extensions": [".qz"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "quazi",
+      "scopeName": "source.quazi",
+      "path": "./syntaxes/quazi.tmLanguage.json"
+    }],
+    "configuration": {
+      "title": "Quazi",
+      "properties": {
+        "quazi.server.path": {
+          "type": "string",
+          "default": "qz",
+          "description": "Path to the Quazi qz executable."
+        }
+      }
+    }
+  },
+  "dependencies": { "vscode-languageclient": "^9.0.1" }
+}

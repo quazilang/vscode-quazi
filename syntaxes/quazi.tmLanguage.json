@@ -1,0 +1,10 @@
+{
+  "scopeName": "source.quazi",
+  "patterns": [
+    { "name": "comment.line.double-slash.quazi", "match": "//.*$" },
+    { "name": "string.quoted.double.quazi", "begin": "\"", "end": "\"", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.quazi" }] },
+    { "name": "meta.attribute.quazi", "match": "@[A-Za-z_][A-Za-z0-9_]*" },
+    { "name": "keyword.control.quazi", "match": "\\b(fn|struct|union|trait|enum|impl|type|import|pub|unsafe|var|const|ret|if|else|for|match|break|continue)\\b" },
+    { "name": "constant.numeric.quazi", "match": "\\b[0-9]+(?:\\.[0-9]+)?\\b" }
+  ]
+}
