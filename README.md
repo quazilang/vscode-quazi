@@ -25,7 +25,12 @@ the editor and the language client boundary:
 node tests/extension-lifecycle.test.js
 ```
 
-For a real-client smoke, launch this directory as an extension-development
-host, open a `.qz` file, and confirm that the **Quazi Language Server** output
-channel reports initialization. Use a separate user-data directory while
-developing so the test does not affect your normal editor profile.
+For a real-client hover smoke, point the test at a built `qz` executable. It
+starts VS Code with isolated user and extension directories, opens a source
+file from a temporary Quazi project directory, and requests hover through VS
+Code's provider API:
+
+```bash
+QUAZI_LSP_COMMAND=/absolute/path/to/qz \
+  bash tests/run-vscode-hover-smoke.sh
+```
