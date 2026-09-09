@@ -15,3 +15,17 @@ workspace root; dependencies and the standard library are never edited.
 
 For the complete feature contract, known limitations, and compiler-level
 verification, see the canonical [contained LSP documentation](../quazistrap/docs/tooling/lsp.md).
+
+## Verification
+
+The lifecycle regression check runs without a VS Code installation by mocking
+the editor and the language client boundary:
+
+```bash
+node tests/extension-lifecycle.test.js
+```
+
+For a real-client smoke, launch this directory as an extension-development
+host, open a `.qz` file, and confirm that the **Quazi Language Server** output
+channel reports initialization. Use a separate user-data directory while
+developing so the test does not affect your normal editor profile.
