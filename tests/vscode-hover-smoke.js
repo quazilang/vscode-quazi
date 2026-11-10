@@ -89,6 +89,11 @@ exports.run = async function run() {
       hover.range.isEqual(new vscode.Range(1, 24, 1, 26)),
       "Quazi hover result does not cover the integer literal",
     );
+    // The launcher's exit status does not reliably reflect the test result;
+    // the runner script checks this marker instead.
+    if (process.env.QUAZI_SMOKE_RESULT) {
+      await fs.writeFile(process.env.QUAZI_SMOKE_RESULT, "pass\n");
+    }
   } finally {
     await fs.rm(project.root, { recursive: true, force: true });
   }

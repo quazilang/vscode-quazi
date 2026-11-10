@@ -34,3 +34,17 @@ Code's provider API:
 QUAZI_LSP_COMMAND=/absolute/path/to/qz \
   bash tests/run-vscode-hover-smoke.sh
 ```
+
+The script reports `PASS VS Code hover smoke` only when the test finished its
+checks (the VS Code launcher's own exit status does not reflect the test), and
+prints the editor's verbose log otherwise. Extra arguments go to VS Code. To
+run it headless, for example with VSCodium and Xvfb from Nix (unset
+`WAYLAND_DISPLAY` so Electron uses the virtual X server):
+
+```bash
+env -u WAYLAND_DISPLAY -u DISPLAY \
+  QUAZI_LSP_COMMAND=/absolute/path/to/qz \
+  VSCODE_COMMAND=$(nix build nixpkgs#vscodium --no-link --print-out-paths)/bin/codium \
+  $(nix build nixpkgs#xvfb-run --no-link --print-out-paths)/bin/xvfb-run -a \
+  bash tests/run-vscode-hover-smoke.sh --ozone-platform=x11
+```
