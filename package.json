@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "publisher": "quazilang",
   "license": "0BSD",
+  "repository": { "type": "git", "url": "https://github.com/quazilang/vscode-quazi" },
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Programming Languages"],
   "main": "./src/extension.js",

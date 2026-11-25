@@ -5,7 +5,9 @@ set -euo pipefail
 : "${VSCODE_COMMAND:=code}"
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-extension_dir=$(CDPATH= cd -- "$script_dir/.." && pwd)
+# QUAZI_EXTENSION_DIR runs the test against another copy of the extension,
+# such as the `extension/` directory of an unpacked VSIX.
+extension_dir=$(CDPATH= cd -- "${QUAZI_EXTENSION_DIR:-$script_dir/..}" && pwd)
 profile_dir=$(mktemp -d)
 extensions_dir=$(mktemp -d)
 result_file=$(mktemp)
